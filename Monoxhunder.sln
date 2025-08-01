@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monoxhunder", "Monoxhunder\Monoxhunder.csproj", "{19FD70CD-1988-4185-9825-52DD79224FAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoxhunderTest", "MonoxhunderTest\MonoxhunderTest.csproj", "{A3C2D312-DF38-4D59-9270-1363DD4DB3D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{19FD70CD-1988-4185-9825-52DD79224FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19FD70CD-1988-4185-9825-52DD79224FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19FD70CD-1988-4185-9825-52DD79224FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C2D312-DF38-4D59-9270-1363DD4DB3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C2D312-DF38-4D59-9270-1363DD4DB3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C2D312-DF38-4D59-9270-1363DD4DB3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C2D312-DF38-4D59-9270-1363DD4DB3D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
