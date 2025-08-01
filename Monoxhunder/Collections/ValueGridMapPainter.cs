@@ -8,13 +8,13 @@ namespace Monoxhunder.Collections
     public class ValueGridMapPainter<T>(ValueGridMap<T> canvas)
     {
         private readonly ValueGridMap<T> canvas = canvas;
-        private List<Vector2> affectedCoordinates = [];
+        private List<IntVector2> affectedCoordinates = [];
 
 
 
-        private bool AddIfNew(int x, int y) => AddIfNew(new Vector2(x, y));
+        private bool AddIfNew(int x, int y) => AddIfNew(new IntVector2(x, y));
 
-        private bool AddIfNew(Vector2 vector)
+        private bool AddIfNew(IntVector2 vector)
         {
             if (affectedCoordinates.Contains(vector))
             {
@@ -23,7 +23,7 @@ namespace Monoxhunder.Collections
             }
             return false;
         }
-        
+
 
 
         public void Add(Rectangle rectangle)
@@ -34,6 +34,18 @@ namespace Monoxhunder.Collections
                 {
                     AddIfNew(x, y);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Sets all Values inside the <see cref="ValueGridMap"/> at the Added vectors to <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        public void Paint(T value)
+        {
+            foreach (IntVector2 vector in affectedCoordinates)
+            {
+                canvas[vector] = value;
             }
         }
     }

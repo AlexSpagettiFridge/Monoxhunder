@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Monoxhunder;
 
+/// <summary>
+/// Entrypoint <see cref="Game"/> that utilizes <see cref="Scene"/>.
+/// </summary>
 public class GameMain : Game
 {
     public static GameMain Instance => instance;
