@@ -11,5 +11,10 @@ namespace Monoxhunder.IntVectorEnumerators
             if (source is Rectangle rectangle) { return new IntVectorRectangleEnumerator(rectangle); }
             throw new ArgumentException($"IntVectorEnumeratorFactory is unable to process an Argument of type {source.GetType()}");
         }
+
+        public static IntVectorLineEnumerator FromLine(IntVector2 start, IntVector2 end)
+        {
+            return new IntVectorLineEnumerator(start, end);
+        }
     }
 }

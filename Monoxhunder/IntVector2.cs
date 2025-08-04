@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.Xna.Framework;
 
 namespace Monoxhunder
@@ -19,6 +20,7 @@ namespace Monoxhunder
             Y = (int)Math.Floor(vector.Y);
         }
 
+        #region operators
         public static IntVector2 operator +(IntVector2 a, IntVector2 b)
         {
             return new IntVector2(a.X + b.X, a.Y + b.Y);
@@ -48,5 +50,15 @@ namespace Monoxhunder
         {
             return new Vector2(a.X / b, a.Y / b);
         }
+
+        public static Vector2 operator !(IntVector2 a)
+        {
+            return new Vector2(-a.X, -a.Y);
+        }
+        #endregion
+
+        #region Math Functions
+        public readonly IntVector2 Sign() => new(Math.Sign(X), Math.Sign(Y));
+        #endregion
     }
 }
