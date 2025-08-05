@@ -20,6 +20,11 @@ namespace Monoxhunder
             Y = (int)Math.Floor(vector.Y);
         }
 
+        public override readonly string ToString()
+        {
+            return $"[{X}:{Y}]";
+        }
+
         #region operators
         public static IntVector2 operator +(IntVector2 a, IntVector2 b)
         {
