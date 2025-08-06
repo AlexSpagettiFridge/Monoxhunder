@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 
@@ -34,6 +36,36 @@ namespace Monoxhunder.Collections
                 {
                     AddIfNew(x, y);
                 }
+            }
+        }
+
+        public void Add(Collection<IntVector2> vectors)
+        {
+            foreach (IntVector2 vector in vectors)
+            {
+                AddIfNew(vector);
+            }
+        }
+
+        public void GrowSelection(int size, params T[] stopValues)
+        {
+            List<IntVector2> edgeVectors = affectedCoordinates;
+            for (; size > 0; size--)
+            {
+                List<IntVector2> newEdgeVectors = [];
+                foreach (IntVector2 vector in edgeVectors)
+                {
+                    foreach (IntVector2 neighbour in vector.GetNeighbours(false))
+                    {
+                        if (stopValues.Contains(canvas[neighbour])) { continue; } //skip over stopValues
+                        if (AddIfNew(neighbour))
+                        {
+                            //Only add to edgeVectors if actually new
+                            newEdgeVectors.Add(neighbour);
+                        }
+                    }
+                }
+                edgeVectors = newEdgeVectors;
             }
         }
 
