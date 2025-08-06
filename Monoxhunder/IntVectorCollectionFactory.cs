@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Monoxhunder.IntVectorEnumerators
+namespace Monoxhunder
 {
-    public class IntVectorEnumeratorFactory
+    public class IntVectorCollectionFactory
     {
         public static List<IntVector2> FromRectangle(Rectangle source)
         {
