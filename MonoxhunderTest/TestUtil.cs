@@ -1,6 +1,4 @@
-using System.Collections.ObjectModel;
 using Monoxhunder;
-using Monoxhunder.IntVectorEnumerators;
 
 namespace MonoxhunderTest
 {
@@ -13,7 +11,7 @@ namespace MonoxhunderTest
             Console.WriteLine($"Testing Line from {start} to {end}...");
             Console.ResetColor();
 
-            List<IntVector2> result = IntVectorEnumeratorFactory.FromLine(start, end);
+            List<IntVector2> result = IntVectorCollectionFactory.FromLine(start, end);
             Console.Write("Result: ");
             for (int i = 0; i < result.Count; i++)
             {
