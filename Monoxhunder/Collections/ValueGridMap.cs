@@ -11,7 +11,7 @@ namespace Monoxhunder.Collections
 
         public ValueGridMap(int width, int height, T defaultValue)
         {
-            map = new T[,] { };
+            map = new T[width,height];
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
