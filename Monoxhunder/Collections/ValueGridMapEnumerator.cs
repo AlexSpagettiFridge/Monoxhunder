@@ -6,7 +6,7 @@ namespace Monoxhunder.Collections
     internal class ValueGridMapEnumerator<T>(ValueGridMap<T> _source) : IEnumerator<ValueGridMapEnumeratorEntry<T>>
     {
         private readonly ValueGridMap<T> source = _source;
-        private int x = 0, y = 0;
+        private int x = -1, y = 0;
 
         public ValueGridMapEnumeratorEntry<T> Current => new(source[x, y], x, y);
 
@@ -30,7 +30,7 @@ namespace Monoxhunder.Collections
 
         public void Reset()
         {
-            x = 0;
+            x = -1;
             y = 0;
         }
     }
