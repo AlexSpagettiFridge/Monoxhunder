@@ -88,6 +88,9 @@ namespace Monoxhunder
         {
             return new Vector2(-a.X, -a.Y);
         }
+
+        public static implicit operator Vector2(IntVector2 a) => new(a.X, a.Y);
+        public static explicit operator IntVector2(Vector2 a) => new(a);
         #endregion
 
         #region Math Functions
