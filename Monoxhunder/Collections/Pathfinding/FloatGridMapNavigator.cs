@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Monoxhunder.Collections.Pathfinding
 {
@@ -25,21 +24,22 @@ namespace Monoxhunder.Collections.Pathfinding
 
         public List<IntVector2> GetAStarPath(IntVector2 start, IntVector2 end, out float totalWeight)
         {
-            float diagonalWeightModifier = (float)Math.Sqrt(2);
-            Collection<IntVector2> checkedTiles = [];
+            Collection<IntVector2> checkedTiles = [start];
             PriorityQueue<AStarPath> possiblePaths = new();
             possiblePaths.Add(new AStarPath(start, 0));
             while (!possiblePaths.IsEmpty)
             {
                 AStarPath currentPath = possiblePaths.Dequeue();
-                checkedTiles.Add(currentPath.Last);
-                bool ignoreDiagonals = diagonalWeightModifier <= 0;
-                bool isNeighbour = false;
-                foreach (IntVector2 neighbour in currentPath.Last.GetNeighbours(!ignoreDiagonals))
+                
+                
+                foreach (IntVector2 neighbour in currentPath.Last.GetNeighbours(DiagonalModifier > 0))
                 {
-                    if (!ignoreDiagonals) { isNeighbour = !isNeighbour; }
+                    //Check if inside map and not already visited
                     if (checkedTiles.Contains(neighbour) || !WeightMap.Contains(neighbour)) { continue; }
-                    float addedWeight = WeightMap[neighbour] * (isNeighbour ? diagonalWeightModifier : 1);
+                    checkedTiles.Add(neighbour);
+                    //Calculate movement weight of new tile
+                    bool isDiagonal = Math.Abs(neighbour.X-currentPath.Last.X)==Math.Abs(neighbour.Y-currentPath.Last.Y);
+                    float addedWeight = WeightMap[neighbour] * (isDiagonal ? DiagonalModifier : 1);
                     if (addedWeight <= 0) { continue; }
 
                     AStarPath newPath = new(currentPath, neighbour, addedWeight);

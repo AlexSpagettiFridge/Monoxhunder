@@ -33,10 +33,12 @@ namespace Monoxhunder
         /// <returns></returns>
         public readonly IntVector2[] GetNeighbours(bool diagonals)
         {
-            int index = 0;
+            
             IntVector2[] result = new IntVector2[diagonals ? 8 : 4];
-            for (IntVector2 modifier = new(-1, -1); modifier.Y < 2; modifier.X++)
+            IntVector2 modifier = new(-2, -1);
+            for (int i = 0;i < result.Length;)
             {
+                modifier.X++;
                 if (modifier.X == 0 && modifier.Y == 0) { continue; } //skip yourself
                 if (modifier.X > 1)
                 {
@@ -47,8 +49,8 @@ namespace Monoxhunder
                 {
                     if (Math.Abs(modifier.X) == Math.Abs(modifier.Y)) { continue; } //skip diagonals
                 }
-                result[index] = this + modifier;
-                index++;
+                result[i] = this + modifier;
+                i++;
             }
             return result;
         }

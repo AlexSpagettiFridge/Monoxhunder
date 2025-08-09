@@ -1,5 +1,6 @@
 using Monoxhunder;
 using Monoxhunder.Collections;
+using Monoxhunder.Collections.Pathfinding;
 
 namespace MonoxhunderTest
 {
@@ -88,6 +89,17 @@ namespace MonoxhunderTest
             Console.WriteLine("✓ Result matches expected outcome.");
             Console.ResetColor();
             return true;
+        }
+
+        public static void TestNavigation()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Testing AStar Navigation...");
+            Console.ResetColor();
+            ValueGridMap<float> map = new(3, 3, 1);
+            FloatGridMapNavigator navigator = new(map,false);
+            Console.WriteLine(":" + navigator.GetAStarPath(new(0, 0), new(2, 2)));
         }
     }
 }

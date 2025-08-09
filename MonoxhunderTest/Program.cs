@@ -10,3 +10,4 @@ TestUtil.TestLineGeneration(new IntVector2(4, 0), new IntVector2(0, 4), [new(4, 
 TestUtil.TestLineGeneration(new IntVector2(0, 4), new IntVector2(4, 0), [new(0, 4), new(1, 3), new(2, 2), new(3, 1), new(4, 0)]);
 
 TestUtil.TestPriorityQueue([-100, 0, 0.5f, 10, 200]);
+TestUtil.TestNavigation();

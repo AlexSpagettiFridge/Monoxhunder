@@ -23,10 +23,12 @@ namespace Monoxhunder.Collections.Pathfinding
         public AStarPath(AStarPath clone, IntVector2 additionalTile, float addedWeight)
         {
             Path = new IntVector2[clone.Path.LongLength + 1];
-            for (int i = 0; i <= clone.Path.Length; i++)
+            for (int i = 0; i < clone.Path.Length; i++)
             {
                 Path[i] = clone.Path[i];
             }
+            Path[^1] = additionalTile;
+            TotalWeight = clone.TotalWeight + addedWeight;
         }
 
         public readonly int CompareTo(object obj)
@@ -36,6 +38,11 @@ namespace Monoxhunder.Collections.Pathfinding
                 return Math.Sign(TotalWeight - other.TotalWeight);
             }
             return 0;
+        }
+
+        public readonly override string ToString()
+        {
+            return $"[C:{Path.Length} L:{Last}]";
         }
     }
 }
