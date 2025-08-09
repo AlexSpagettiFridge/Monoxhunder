@@ -6,7 +6,7 @@ namespace Monoxhunder.Collections.Pathfinding
     {
         public readonly IntVector2[] Path;
         public readonly float TotalWeight;
-        public readonly IntVector2 Last => Path[Path.Length];
+        public readonly IntVector2 Last => Path[^1];
 
         public AStarPath(IntVector2 entry, float startWeight = 0)
         {

@@ -43,12 +43,12 @@ namespace Monoxhunder.Collections
             collection = newCollection;
         }
 
-        public T Peek() => SmallFirst ? collection[0] : collection[collection.Length];
+        public T Peek() => SmallFirst ? collection[0] : collection[^1];
 
         public T Dequeue()
         {
             T result = Peek();
-            T[] newCollection = new T[collection.Length];
+            T[] newCollection = new T[collection.Length - 1];
             for (int i = 0; i < collection.Length - 1; i++)
             {
                 newCollection[i] = collection[i + (SmallFirst ? 1 : 0)];
