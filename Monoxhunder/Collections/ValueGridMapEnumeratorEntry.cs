@@ -1,8 +1,10 @@
 namespace Monoxhunder.Collections
 {
-    public struct ValueGridMapEnumeratorEntry<T>(T value, int x, int y)
+    public readonly struct ValueGridMapEnumeratorEntry<T>(T value, int x, int y)
     {
-        public T Value = value;
-        public int X = x, Y = y;
+        public readonly T Value = value;
+        public readonly int X => Position.X;
+        public readonly int Y => Position.Y;
+        public readonly IntVector2 Position = new(x, y);
     }
 }

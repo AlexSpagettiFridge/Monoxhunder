@@ -7,6 +7,7 @@ namespace Monoxhunder.Collections
     public class PriorityQueue<T> where T : IComparable
     {
         public bool SmallFirst = true;
+        public bool IsEmpty => collection.Length == 0;
         private T[] collection;
 
         public PriorityQueue()
