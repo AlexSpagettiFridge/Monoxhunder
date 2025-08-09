@@ -91,6 +91,16 @@ namespace Monoxhunder
 
         public static implicit operator Vector2(IntVector2 a) => new(a.X, a.Y);
         public static explicit operator IntVector2(Vector2 a) => new(a);
+
+        public static bool operator ==(IntVector2 a, IntVector2 b)
+        {
+            return a.X == b.X && a.Y == b.Y;
+        }
+
+        public static bool operator !=(IntVector2 a, IntVector2 b)
+        {
+            return a.X != b.X || a.Y != b.Y;
+        }
         #endregion
 
         #region Math Functions
