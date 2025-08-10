@@ -24,6 +24,11 @@ namespace Monoxhunder.Collections.Pathfinding
 
         public List<IntVector2> GetAStarPath(IntVector2 start, IntVector2 end, out float totalWeight)
         {
+            if (start == end)
+            {
+                totalWeight = 0;
+                return [start];
+            }
             Collection<IntVector2> checkedTiles = [start];
             PriorityQueue<AStarPath> possiblePaths = new();
             possiblePaths.Add(new AStarPath(start, 0));
