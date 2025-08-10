@@ -39,10 +39,10 @@ namespace Monoxhunder
         /// <returns></returns>
         public readonly IntVector2[] GetNeighbours(bool diagonals)
         {
-            
+
             IntVector2[] result = new IntVector2[diagonals ? 8 : 4];
             IntVector2 modifier = new(-2, -1);
-            for (int i = 0;i < result.Length;)
+            for (int i = 0; i < result.Length;)
             {
                 modifier.X++;
                 if (modifier.X == 0 && modifier.Y == 0) { continue; } //skip yourself
@@ -62,6 +62,16 @@ namespace Monoxhunder
         }
 
         #region operators
+        public readonly override bool Equals(object obj)
+        {
+            return GetHashCode() == obj.GetHashCode();
+        }
+
+        public readonly override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+
         public static IntVector2 operator +(IntVector2 a, IntVector2 b)
         {
             return new IntVector2(a.X + b.X, a.Y + b.Y);
