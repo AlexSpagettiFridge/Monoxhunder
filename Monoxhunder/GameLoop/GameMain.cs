@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Monoxhunder;
+namespace Monoxhunder.GameLoop;
 
 /// <summary>
 /// Entrypoint <see cref="Game"/> that utilizes <see cref="Scene"/>.
@@ -10,6 +10,8 @@ public class GameMain : Game
 {
     public static GameMain Instance => instance;
     public GraphicsDeviceManager Graphics => graphics;
+    public InputHandler InputHandler => inputHandler;
+    private InputHandler inputHandler;
     private Scene currentScene = null;
 
     private static GameMain instance;
@@ -20,7 +22,7 @@ public class GameMain : Game
     public GameMain(Scene startScene, string title, int width, int height, bool fullscreen)
     {
         instance = this;
-
+        inputHandler = new InputHandler();
         graphics = new(this)
         {
             PreferredBackBufferWidth = width,
@@ -62,6 +64,7 @@ public class GameMain : Game
 
     protected override void Update(GameTime gameTime)
     {
+        inputHandler.Update(gameTime);
         currentScene.Update(gameTime);
     }
 
