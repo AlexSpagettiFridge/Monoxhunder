@@ -21,6 +21,12 @@ namespace Monoxhunder
             Y = (int)Math.Floor(vector.Y);
         }
 
+        public IntVector2(Point point)
+        {
+            X = point.X;
+            Y = point.Y;
+        }
+
         public override readonly string ToString()
         {
             return $"[{X}:{Y}]";
@@ -91,9 +97,6 @@ namespace Monoxhunder
             return new Vector2(-a.X, -a.Y);
         }
 
-        public static implicit operator Vector2(IntVector2 a) => new(a.X, a.Y);
-        public static explicit operator IntVector2(Vector2 a) => new(a);
-
         public static bool operator ==(IntVector2 a, IntVector2 b)
         {
             return a.X == b.X && a.Y == b.Y;
@@ -103,6 +106,12 @@ namespace Monoxhunder
         {
             return a.X != b.X || a.Y != b.Y;
         }
+
+        public static implicit operator Vector2(IntVector2 a) => new(a.X, a.Y);
+        public static explicit operator IntVector2(Vector2 a) => new(a);
+
+        public static implicit operator Point(IntVector2 a) => new(a.X, a.Y);
+        public static explicit operator IntVector2(Point a) => new(a);
         #endregion
 
         #region Math Functions
