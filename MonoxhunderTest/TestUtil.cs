@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Monoxhunder;
 using Monoxhunder.Collections;
 using Monoxhunder.Collections.Pathfinding;
@@ -6,13 +7,24 @@ namespace MonoxhunderTest
 {
     public class TestUtil()
     {
-        public static bool TestLineGeneration(IntVector2 start, IntVector2 end, List<IntVector2> expectedOutcome)
+        private static void WriteNewTestLine(string line)
         {
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Testing Line from {start} to {end}...");
+            Console.WriteLine(line);
             Console.ResetColor();
+        }
 
+        private static void WriteOutputLine(string line, bool isSuccess)
+        {
+            Console.ForegroundColor = isSuccess ? ConsoleColor.Green : ConsoleColor.Red;
+            Console.WriteLine(line);
+            Console.ResetColor();
+        }
+
+        public static bool TestLineGeneration(IntVector2 start, IntVector2 end, List<IntVector2> expectedOutcome)
+        {
+            WriteNewTestLine($"Testing Line from {start} to {end}...");
             List<IntVector2> result = IntVectorCollectionFactory.FromLine(start, end);
             Console.Write("Result: ");
             for (int i = 0; i < result.Count; i++)
@@ -47,10 +59,7 @@ namespace MonoxhunderTest
 
         public static bool TestPriorityQueue(params float[] rightOrderValues)
         {
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Testing Priority Queue...");
-            Console.ResetColor();
+            WriteNewTestLine("Testing Priority Queue...");
             PriorityQueue<float> priorityQueue = new();
             List<float> values = new(rightOrderValues);
             Random rr = new();
@@ -65,41 +74,49 @@ namespace MonoxhunderTest
             {
                 if (priorityQueue.IsEmpty)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("X PriorityQueue is shorter than expected entries.");
-                    Console.ResetColor();
+                    WriteOutputLine("X PriorityQueue is shorter than expected entries.", false);
                     return false;
                 }
                 if (priorityQueue.Dequeue() != rightOrderValues[i])
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("X Entry incorrect.");
-                    Console.ResetColor();
+                    WriteOutputLine("X Entry incorrect.", false);
                     return false;
                 }
             }
             if (!priorityQueue.IsEmpty)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("X PriorityQueue is longer than expected entries.");
-                Console.ResetColor();
+                WriteOutputLine("X PriorityQueue is longer than expected entries.", false);
                 return false;
             }
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("✓ Result matches expected outcome.");
-            Console.ResetColor();
+            WriteOutputLine("✓ Result matches expected outcome.", true);
             return true;
         }
 
         public static void TestNavigation()
         {
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Testing AStar Navigation...");
-            Console.ResetColor();
+            WriteNewTestLine("Testing AStar Navigation...");
             ValueGridMap<float> map = new(3, 3, 1);
-            FloatGridMapNavigator navigator = new(map,false);
+            FloatGridMapNavigator navigator = new(map, false);
             Console.WriteLine(":" + navigator.GetAStarPath(new(0, 0), new(2, 2)));
+        }
+
+        public static void TestValueGridMapPainting()
+        {
+            WriteNewTestLine("Testing Grid Map Painting");
+            ValueGridMap<int> map = new(5, 5, 0);
+            ValueGridMapPainter<int> painter = map.GetPainter();
+            painter.Add(new Rectangle(1, 1, 3, 3));
+            painter.Paint(1);
+            for (int y = 0; y < map.Height; y++)
+            {
+                Console.Write($"{y + 1}#");
+                foreach (int value in map.GetRow(y))
+                {
+                    Console.Write(value);
+                }
+                Console.WriteLine();
+            }
+            
         }
     }
 }
