@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using System.Xml.XPath;
 using Monoxhunder.Collections.Pathfinding;
 
 namespace Monoxhunder.Collections
@@ -50,6 +51,34 @@ namespace Monoxhunder.Collections
             foreach (ValueGridMapEnumeratorEntry<T> entry in this)
             {
                 result[entry.Position] = entryConversion.Invoke(entry.Value);
+            }
+            return result;
+        }
+
+        public T[] GetRow(int rowIndex)
+        {
+            if (rowIndex < 0 || rowIndex >= Height)
+            {
+                throw new ArgumentException($"ValueGridMap does not contain line {rowIndex}");
+            }
+            T[] result = new T[Width];
+            for (int i = 0; i < Width; i++)
+            {
+                result[i] = this[i, rowIndex];
+            }
+            return result;
+        }
+
+        public T[] GetColumn(int rowColumn)
+        {
+            if (rowColumn < 0 || rowColumn >= Width)
+            {
+                throw new ArgumentException($"ValueGridMap does not contain column {rowColumn}");
+            }
+            T[] result = new T[Height];
+            for (int i = 0; i < Height; i++)
+            {
+                result[i] = this[rowColumn, i];
             }
             return result;
         }
