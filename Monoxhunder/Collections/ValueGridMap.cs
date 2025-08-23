@@ -1,10 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
-using System.Xml.XPath;
-using Monoxhunder.Collections.Pathfinding;
 
 namespace Monoxhunder.Collections
 {

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.Xna.Framework;
 
 namespace Monoxhunder

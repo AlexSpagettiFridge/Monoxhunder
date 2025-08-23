@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 
 namespace Monoxhunder.Collections
@@ -10,7 +9,7 @@ namespace Monoxhunder.Collections
     public class ValueGridMapPainter<T>(ValueGridMap<T> canvas)
     {
         private readonly ValueGridMap<T> canvas = canvas;
-        private List<IntVector2> affectedCoordinates = [];
+        private readonly List<IntVector2> affectedCoordinates = [];
 
 
 
