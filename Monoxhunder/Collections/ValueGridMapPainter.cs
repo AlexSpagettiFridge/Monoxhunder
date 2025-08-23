@@ -18,7 +18,7 @@ namespace Monoxhunder.Collections
 
         private bool AddIfNew(IntVector2 vector)
         {
-            if (affectedCoordinates.Contains(vector))
+            if (!affectedCoordinates.Contains(vector))
             {
                 affectedCoordinates.Add(vector);
                 return true;

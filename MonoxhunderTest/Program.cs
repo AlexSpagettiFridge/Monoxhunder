@@ -11,3 +11,4 @@ TestUtil.TestLineGeneration(new IntVector2(0, 4), new IntVector2(4, 0), [new(0, 
 
 TestUtil.TestPriorityQueue([-100, 0, 0.5f, 10, 200]);
 TestUtil.TestNavigation();
+TestUtil.TestValueGridMapPainting();
